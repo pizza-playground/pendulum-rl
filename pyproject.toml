@@ -1,0 +1,27 @@
+[project]
+name = "pendulum-rl"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "doyeon789", email = "ldyeon789@naver.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pygame>=2.6.1",
+]
+
+[project.scripts]
+pendulum-rl = "pendulum_rl:main"
+
+[project.optional-dependencies]
+rl = [
+    "gymnasium>=1.3.0",
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.2",
+    "stable-baselines3>=2.9.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
