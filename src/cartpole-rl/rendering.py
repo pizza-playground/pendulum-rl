@@ -2,7 +2,7 @@ from math import cos, sin
 import pygame
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 800, 450
-RAIL = 380
+RAIL = 340
 
 CART_WIDTH, CART_HEIGHT = 40, 30
 CART_Y = RAIL - CART_HEIGHT // 2
