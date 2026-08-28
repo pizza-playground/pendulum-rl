@@ -24,7 +24,7 @@ def draw_cart_pole(screen: pygame.Surface, cart_x: float, bar_angle: float) -> N
     pivot_center = pygame.Vector2(cart.centerx, cart.top + PIVOT_OFFSET_Y)
 
     bar_direction = pygame.Vector2(sin(bar_angle), -cos(bar_angle))
-    bar_side = pygame.Vector2(cos(bar_angle), sin(bar_angle)) * (BAR_WIDTH / 2)
+    bar_side = pygame.Vector2(cos(bar_angle), sin(bar_angle)) * ((BAR_WIDTH / 2) + 0.5)
 
     bar_top = pivot_center + bar_direction * BAR_LENGTH
     bar_root = pivot_center - bar_direction * BAR_INSET
