@@ -2,9 +2,13 @@ import pygame
 
 import physics
 import rendering
+import random
 
 FPS = 60
-PIXELS_PER_METER = 100  
+PIXELS_PER_METER = 100 
+
+PHYSICS_DT = 1 / 60  
+MAX_FRAME_TIME = 0.25
 
 
 def to_screen_x(cart_position_m: float) -> float:
@@ -18,12 +22,15 @@ def main() -> None:
     pygame.display.set_caption("CartPole RL")
     clock = pygame.time.Clock()
 
-
-    state = physics.State(bar_angle=0.05)
+    start_angle = random.uniform(-1.0, 1.0)
+    state = physics.State(bar_angle=start_angle)
+    accumulator = 0.0
 
     running = True
     while running:
-        dt = clock.tick(FPS) / 1000
+        frame_time = clock.tick(FPS) / 1000
+        frame_time = min(frame_time, MAX_FRAME_TIME)
+        accumulator += frame_time
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -31,7 +38,9 @@ def main() -> None:
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 running = False
 
-        state = physics.step(state, dt)
+        while accumulator >= PHYSICS_DT:
+            state = physics.step(state, PHYSICS_DT)
+            accumulator -= PHYSICS_DT
 
         screen.fill(rendering.BACKGROUND_COLOR)
         rendering.draw_cart_pole(screen, to_screen_x(state.cart_x), state.bar_angle)
