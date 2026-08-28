@@ -1,5 +1,5 @@
 [project]
-name = "pendulum-rl"
+name = "cartpole-rl"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-pendulum-rl = "pendulum_rl:main"
+cartpole-rl = "cartpole-rl:main"
 
 [project.optional-dependencies]
 rl = [

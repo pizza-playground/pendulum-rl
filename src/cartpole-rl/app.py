@@ -45,7 +45,7 @@ def draw_cart_pole(screen: pygame.Surface, cart_x: float, bar_angle: float) -> N
 def main() -> None:
     pygame.init()
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-    pygame.display.set_caption("Inverted Pendulum")
+    pygame.display.set_caption("CartPole RL")
     clock = pygame.time.Clock()
 
     cart_x = CART_START_X
