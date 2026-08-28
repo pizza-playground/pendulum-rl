@@ -9,6 +9,9 @@ POLE_HALF_LENGTH = 0.5
 TOTAL_MASS = CART_MASS + POLE_MASS
 POLE_MASS_LENGTH = POLE_MASS * POLE_HALF_LENGTH
 
+CART_FRICTION = 0.1
+POLE_FRICTION = 0.02
+
 
 @dataclass
 class State:
@@ -33,6 +36,9 @@ def step(state: State, dt: float, force: float = 0.0) -> State:
     cart_acceleration = (
         temp - POLE_MASS_LENGTH * angular_acceleration * cos_theta / TOTAL_MASS
     )
+
+    cart_acceleration -= CART_FRICTION * state.cart_velocity
+    angular_acceleration -= POLE_FRICTION * state.bar_angular_velocity
 
     cart_velocity = state.cart_velocity + cart_acceleration * dt
     cart_x = state.cart_x + cart_velocity * dt
